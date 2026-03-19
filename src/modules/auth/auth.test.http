@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbTF1M2Y5aDAwMDBqb3JjbXJxZmpzdmgiLCJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzIwMTI4MTIsImV4cCI6MTc3MjYxNzYxMiwiaXNzIjoiVmFsaWRhdGlvbkRUTy1BUEkifQ.g8KAE4vYZh3H4GIpu_ml8PzDqSPsVHul_OiVoE4Zhbc
+
+### Auth - Register User
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "SecurePassword123",
+    "confirmPassword": "SecurePassword123"
+}
+
+### Auth - Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test2@example.com",
+    "password": "Test123!"
+}
+
+### Auth - Get Profile (Protected)
+GET {{baseUrl}}/api/auth/profile
+Authorization: Bearer {{token}}
+
+### Auth - Verify Token
+POST {{baseUrl}}/api/auth/verify
+Content-Type: application/json
+
+{
+    "token": "{{token}}"
+}
+
+### Auth - Change Password (Protected)
+POST {{baseUrl}}/api/auth/change-password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "currentPassword": "Test123!",
+    "newPassword": "NewPassword456!",
+    "confirmNewPassword": "NewPassword456!"
+}
+
+### Auth - Logout (Protected)
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}

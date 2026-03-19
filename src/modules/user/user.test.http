@@ -1,0 +1,60 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbTFyNXBuaDAwMDBqb3Q4aTUxaTZxbGMiLCJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDAzNDc3MDUsImV4cCI6MTc0MDk1MjUwNSwiaXNzIjoiVmFsaWRhdGlvbkRUTy1BUEkifQ.0IhGjmhb3kNJyvX10kP0cO48R5xV_yHWTm6E2tQKJ9g
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluMTIzIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0MDM0NzcwNSwiZXhwIjoxNzQwOTUyNTA1LCJpc3MiOiJWYWxpZGF0aW9uRFRPLUFQSSJ9.example_admin_token
+
+### User - Search Users (Public)
+GET {{baseUrl}}/api/users/search?q=john&role=user&page=1&limit=10
+
+### User - Get My Profile (Protected)
+GET {{baseUrl}}/api/users/profile
+Authorization: Bearer {{token}}
+
+### User - Get All Users (Protected)
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{token}}
+
+### User - Get All Users with Pagination (Protected)
+GET {{baseUrl}}/api/users?page=1&limit=5&sortBy=createdAt&sortOrder=desc
+
+### User - Get User by ID (Protected)
+GET {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc
+Authorization: Bearer {{token}}
+
+### User - Update User (Protected)
+PATCH {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Updated User Name",
+    "email": "updated@example.com",
+    "bio": "Updated user biography"
+}
+
+### User - Get User Statistics (Protected)
+GET {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc/stats
+Authorization: Bearer {{token}}
+
+### User - Delete User (Protected)
+DELETE {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc
+Authorization: Bearer {{token}}
+
+### User - Update User Role (Admin Only)
+PATCH {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc/role
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "role": "admin"
+}
+
+### User - Restore User (Admin Only)
+PATCH {{baseUrl}}/api/users/cmm1r5pnh0000jot8i51i6qlc/restore
+Authorization: Bearer {{adminToken}}
+
+### User - Advanced Search with Filters
+GET {{baseUrl}}/api/users?search=john&role=user&isActive=true&page=1&limit=10&sortBy=name&sortOrder=asc
+
+### User - Get Users with Role Filter
+GET {{baseUrl}}/api/users?role=admin&page=1&limit=5
+Authorization: Bearer {{adminToken}}

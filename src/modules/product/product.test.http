@@ -1,0 +1,82 @@
+@baseUrl = http://localhost:3000
+# Get fresh token by logging in first:
+# POST {{baseUrl}}/api/auth/login with {"email":"test@example.com","password":"Test123!"}
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbTF1M2Y5aDAwMDBqb3JjbXJxZmpzdmgiLCJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzIwMTI4MTIsImV4cCI6MTc3MjYxNzYxMiwiaXNzIjoiVmFsaWRhdGlvbkRUTy1BUEkifQ.g8KAE4vYZh3H4GIpu_ml8PzDqSPsVHul_OiVoE4Zhbc
+
+### Product - Get All Products (Public)
+GET {{baseUrl}}/api/products
+
+### Product - Search Products (Public)
+GET {{baseUrl}}/api/products/search?q=laptop&category=electronics&minPrice=100&maxPrice=1000
+
+### Product - Get Products by Category (Public)
+GET {{baseUrl}}/api/products/category/electronics
+
+### Product - Get Product by ID (Public)
+# First create a product, then use its ID here
+GET {{baseUrl}}/api/products/REPLACE_WITH_ACTUAL_PRODUCT_ID
+
+### Product - Create Product (Protected)
+POST {{baseUrl}}/api/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Gaming Laptop",
+    "description": "High-performance gaming laptop with RTX 4070",
+    "price": 1299.99,
+    "category": "electronics",
+    "stock": 15,
+    "sku": "LAPTOP-001",
+    "tags": ["gaming", "laptop", "electronics"],
+    "specifications": {
+        "processor": "Intel i7",
+        "ram": "16GB",
+        "storage": "512GB SSD"
+    }
+}
+
+### Product - Get My Products (Protected)
+GET {{baseUrl}}/api/products/user/my-products
+Authorization: Bearer {{token}}
+
+### Product - Get Product Statistics (Protected)
+GET {{baseUrl}}/api/products/user/stats
+Authorization: Bearer {{token}}
+
+### Product - Update Product (Protected)
+# Replace with actual product ID from create response
+PATCH {{baseUrl}}/api/products/REPLACE_WITH_ACTUAL_PRODUCT_ID
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Updated Gaming Laptop Pro",
+    "price": 1399.99,
+    "stock": 10,
+    "description": "Updated description for the gaming laptop"
+}
+
+### Product - Update Stock (Protected)
+# Replace with actual product ID
+PATCH {{baseUrl}}/api/products/REPLACE_WITH_ACTUAL_PRODUCT_ID/stock
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "stock": 25,
+    "operation": "set"
+}
+
+### Product - Delete Product (Protected)
+# Replace with actual product ID
+DELETE {{baseUrl}}/api/products/REPLACE_WITH_ACTUAL_PRODUCT_ID
+Authorization: Bearer {{token}}
+
+### Product - Restore Product (Protected)
+# Replace with actual product ID of deleted product
+PATCH {{baseUrl}}/api/products/REPLACE_WITH_ACTUAL_PRODUCT_ID/restore
+Authorization: Bearer {{token}}
+
+### Product - Advanced Search with Pagination
+GET {{baseUrl}}/api/products/search?q=laptop&category=electronics&minPrice=500&maxPrice=2000&page=1&limit=5&sortBy=price&sortOrder=asc

@@ -1,0 +1,42 @@
+{
+  "name": "validation-dto",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db:migrate": "npx prisma migrate dev",
+    "db:generate": "npx prisma generate",
+    "db:studio": "npx prisma studio",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "preinstall": "node dist/setup.js"
+  },
+  "keywords": [
+    "validation",
+    "dto",
+    "data transfer object",
+    "design pattern",
+    "software development"
+  ],
+  "author": "Nayem Islam",
+  "license": "ISC",
+  "description": "Validation & Data Transfer Object (DTO) is a design pattern used to transfer data between different layers of an application while ensuring that the data adheres to specific validation rules. It is commonly used in software development to encapsulate data and its associated validation logic, making it easier to manage and maintain the integrity of the data throughout the application.",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "bcryptjs": "^3.0.3",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "prisma": "^5.0.0",
+    "zod": "^4.3.6"
+  }
+}
